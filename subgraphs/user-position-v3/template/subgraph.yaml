@@ -69,7 +69,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: mainnet
+    network: cysic-dev
     source:
       abi: Pool
     mapping:
