@@ -5,7 +5,7 @@ import { BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 import { exponentToBigDecimal, safeDiv } from "./index";
 
 // prettier-ignore
-const WETH_ADDRESS = "0x0261d2F0199D060540C97DC13B5420d5c91A8fe9".toLowerCase();
+const WETH_ADDRESS = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9";
 // prettier-ignore
 const USDC_WETH_03_POOL = "0x0000000000000000000000000000000000000000";
 
@@ -14,7 +14,7 @@ const STABLE_IS_TOKEN0 = "true" as string;
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 // prettier-ignore
-export let WHITELIST_TOKENS: string[] = "0x0261d2F0199D060540C97DC13B5420d5c91A8fe9".toLowerCase().split(",");
+export let WHITELIST_TOKENS: string[] = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9".split(",");
 
 // prettier-ignore
 let STABLE_COINS: string[] = "".split(",");
