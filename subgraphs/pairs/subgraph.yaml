@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: bsc
+    network: cysic-dev
     source:
-      address: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73'
+      address: '0x43d46c17d5Ab670C388a6cb6eb1Cf287730F6E46'
       abi: Factory
-      startBlock: 6809737
+      startBlock: 391190
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -28,3 +28,7 @@ dataSources:
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address,uint256)
           handler: handlePairCreated
+networks:
+  cysic-dev:
+    chain: cysic-dev
+    host: http://10.200.21.53:8655

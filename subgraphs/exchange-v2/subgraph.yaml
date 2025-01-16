@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: arbitrum-one
+    network: cysic-dev
     source:
-      address: "0x02a84c1b3bbd7401a5f7fa98a384ebc70bb5749e"
+      address: "0x43d46c17d5Ab670C388a6cb6eb1Cf287730F6E46"
       abi: Factory
-      startBlock: 101022992
+      startBlock: 309274
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -34,7 +34,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: arbitrum-one
+    network: cysic-dev
     source:
       abi: Pair
     mapping:
@@ -61,3 +61,7 @@ templates:
           handler: handleTransfer
         - event: Sync(uint112,uint112)
           handler: handleSync
+networks:
+  cysic-dev:
+    chain: cysic-dev
+    host: http://10.200.21.53:8655

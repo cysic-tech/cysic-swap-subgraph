@@ -6,8 +6,10 @@ import { ERC20SymbolBytes } from "../../generated/Factory/ERC20SymbolBytes";
 import { Factory as FactoryContract } from "../../generated/templates/Pair/Factory";
 
 export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
-export let FACTORY_ADDRESS = "0xca143ce32fe78f1f7019d7d551a6402fc5350c73";
-export let CAKE_ADDRESS = "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82";
+export let FACTORY_ADDRESS = "0x43d46c17d5ab670c388a6cb6eb1cf287730f6e46";
+
+// WCYS
+export let CAKE_ADDRESS = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9";
 
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);

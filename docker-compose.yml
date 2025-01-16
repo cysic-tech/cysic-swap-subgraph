@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    ports:
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ./ipfs_data:/data/ipfs
+    restart: unless-stopped
+
+  graph-node-base:
+    image: graphprotocol/graph-node:latest
+    environment:
+      - postgres_host=host.docker.internal
+      - postgres_port=7432
+      - postgres_user=blockscout
+      - postgres_pass=ceWb1MeLBEeOIfk65gU8EjF8
+      - postgres_db=blockscout
+      - ipfs=ipfs:5001
+      - ethereum=http://10.200.21.53:8655
+      - RUST_LOG=info
+    depends_on:
+      - ipfs
+    restart: unless-stopped
+
+  graph-node-blocks:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8020:8020"
+
+  graph-node-exchange-cake-pairs:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8120:8020"
+
+  graph-node-exchange-v2:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8220:8020"
+
+  graph-node-exchange-v3:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8320:8020"
+
+  graph-node-pairs:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8420:8020"
+
+  graph-node-user-position-v3:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8520:8020"

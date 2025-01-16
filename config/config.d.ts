@@ -21,12 +21,4 @@ export type NetworkConfig = {
     wNativeStablePair1: string;
     minETHLocked: number;
   };
-  masterChefV3: {
-    startBlock: number;
-    masterChefAddress: string;
-  };
-  predictionV2: {
-    startBlock: number;
-    address: string;
-  };
 };

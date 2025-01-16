@@ -8,11 +8,11 @@ features:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: bsc
+    network: cysic-dev
     source:
-      address: "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865"
+      address: "0x1f661D87f0FC6c60EDD3BC130Cea811aa26c1a88"
       abi: Factory
-      startBlock: 26956207
+      startBlock: 289298
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -37,11 +37,11 @@ dataSources:
           handler: handlePoolCreated
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: bsc
+    network: cysic-dev
     source:
-      address: "0x46a15b0b27311cedf172ab29e4f4766fbe7f4364"
+      address: "0xdf5B0565769EadF40328f3d5dbD4f38a9b941A53"
       abi: NonfungiblePositionManager
-      startBlock: 26931961
+      startBlock: 289163
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -71,7 +71,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: bsc
+    network: cysic-dev
     source:
       abi: Pool
     mapping:
@@ -100,3 +100,7 @@ templates:
           handler: handleBurn
         - event: Flash(indexed address,indexed address,uint256,uint256,uint256,uint256)
           handler: handleFlash
+networks:
+  cysic-dev:
+    chain: cysic-dev
+    host: http://10.200.21.53:8655
