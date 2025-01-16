@@ -60,3 +60,18 @@ services:
       service: graph-node-base
     ports:
       - "8520:8020"
+
+  graph-node-nginx:
+    image: nginx:latest
+    ports:
+      - "8082:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - graph-node-blocks
+      - graph-node-exchange-cake-pairs
+      - graph-node-exchange-v2
+      - graph-node-exchange-v3
+      - graph-node-pairs
+      - graph-node-user-position-v3
+    restart: unless-stopped
