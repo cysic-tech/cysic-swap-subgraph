@@ -61,7 +61,7 @@ templates:
           handler: handleTransfer
         - event: Sync(uint112,uint112)
           handler: handleSync
-networks:
-  cysic-dev:
-    chain: cysic-dev
-    host: http://10.200.21.53:8655
+# networks:
+#   cysic-dev:
+#     chain: cysic-dev
+#     host: http://10.200.21.53:8655

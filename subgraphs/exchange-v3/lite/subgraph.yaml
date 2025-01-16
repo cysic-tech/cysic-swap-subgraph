@@ -100,7 +100,7 @@ templates:
           handler: handleBurn
         - event: Flash(indexed address,indexed address,uint256,uint256,uint256,uint256)
           handler: handleFlash
-networks:
-  cysic-dev:
-    chain: cysic-dev
-    host: http://10.200.21.53:8655
+# networks:
+#   cysic-dev:
+#     chain: cysic-dev
+#     host: http://10.200.21.53:8655

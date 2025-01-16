@@ -92,7 +92,7 @@ templates:
           handler: handleMint
         - event: Burn(indexed address,indexed int24,indexed int24,uint128,uint256,uint256)
           handler: handleBurn
-networks:
-  cysic-dev:
-    chain: cysic-dev
-    host: http://10.200.21.53:8655
+# networks:
+#   cysic-dev:
+#     chain: cysic-dev
+#     host: http://10.200.21.53:8655

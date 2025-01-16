@@ -16,7 +16,7 @@ dataSources:
         - Block
       blockHandlers:
         - handler: handleBlock
-networks:
-  cysic-dev:
-    chain: cysic-dev
-    host: http://10.200.21.53:8655
+# networks:
+#   cysic-dev:
+#     chain: cysic-dev
+#     host: http://10.200.21.53:8655

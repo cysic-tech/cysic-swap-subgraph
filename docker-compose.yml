@@ -20,6 +20,7 @@ services:
       - postgres_db=blockscout
       - ipfs=ipfs:5001
       - ethereum=http://10.200.21.53:8655
+      - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
       - RUST_LOG=info
     depends_on:
       - ipfs

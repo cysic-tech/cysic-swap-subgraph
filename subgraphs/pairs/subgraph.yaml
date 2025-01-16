@@ -28,7 +28,7 @@ dataSources:
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address,uint256)
           handler: handlePairCreated
-networks:
-  cysic-dev:
-    chain: cysic-dev
-    host: http://10.200.21.53:8655
+# networks:
+#   cysic-dev:
+#     chain: cysic-dev
+#     host: http://10.200.21.53:8655
