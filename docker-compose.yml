@@ -13,12 +13,11 @@ services:
   graph-node-base:
     image: graphprotocol/graph-node:latest
     environment:
-      - postgres_host=172.18.0.1
+      - postgres_host=10.200.21.15
       - postgres_port=7432
       - postgres_user=blockscout
       - postgres_pass=ceWb1MeLBEeOIfk65gU8EjF8
-      - postgres_db=blockscout  
-      - postgres_initdb_args='--locale=de_DE.UTF8' 
+      - postgres_db=blockscout
       - ipfs=ipfs:5001
       - ethereum=http://10.200.21.53:8655
       - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
