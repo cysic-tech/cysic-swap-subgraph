@@ -5,7 +5,7 @@ services:
     image: ipfs/go-ipfs:latest
     ports:
       - "5001:5001"
-      - "8080:8080"
+      - "8083:8080"
     volumes:
       - ./ipfs_data:/data/ipfs
     restart: unless-stopped
@@ -13,7 +13,7 @@ services:
   graph-node-base:
     image: graphprotocol/graph-node:latest
     environment:
-      - postgres_host=host.docker.internal
+      - postgres_host=172.18.0.1
       - postgres_port=7432
       - postgres_user=blockscout
       - postgres_pass=ceWb1MeLBEeOIfk65gU8EjF8
