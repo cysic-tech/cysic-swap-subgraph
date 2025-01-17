@@ -10,6 +10,6 @@
     "auth": "graph auth --product hosted-service SUBGRAPH_ACCESS_TOKEN",
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cysicswap/exchange-v2 subgraph.yaml"
+    "deploy": "graph deploy --node http://localhost:8220/ --ipfs http://localhost:5001 cysicswap/exchange-v2 subgraph.yaml"
   }
 }
