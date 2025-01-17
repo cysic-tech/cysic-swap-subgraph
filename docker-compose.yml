@@ -63,7 +63,8 @@ services:
       - "8520:8020"
 
   graph-deploy:
-    image: graphprotocol/graph-node:latest
+    image: node:22
+    # image: graphprotocol/graph-node:latest
     depends_on:
       - graph-node-blocks
       - graph-node-exchange-cake-pairs
