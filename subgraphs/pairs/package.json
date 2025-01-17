@@ -8,6 +8,6 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "deploy": "graph deploy --node http://localhost:8420/ --ipfs http://localhost:5001 cysicswap/pairs subgraph.yaml"
+    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cysicswap/pairs subgraph.yaml"
   }
 }
