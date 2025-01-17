@@ -78,7 +78,7 @@ services:
     working_dir: /app
     entrypoint: [ "sh", "-c" ]
     command: |
-      npm install -g @graphprotocol/graph-cli --no-fund --no-audit &&
+      npm i -g @graphprotocol/graph-cli --no-fund --no-audit -f &&
       graph deploy --node http://graph-node-blocks:8020 --ipfs http://ipfs:5001 cysicswap/blocks subgraph.yaml &&
       graph deploy --node http://graph-node-exchange-cake-pairs:8020 --ipfs http://ipfs:5001 cysicswap/exchange-cake-pairs subgraph.yaml &&
       graph deploy --node http://graph-node-exchange-v2:8020 --ipfs http://ipfs:5001 cysicswap/exchange-v2 subgraph.yaml &&
