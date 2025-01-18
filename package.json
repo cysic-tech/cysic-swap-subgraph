@@ -12,6 +12,7 @@
   "scripts": {
     "codegen": "turbo run codegen",
     "build": "turbo run build",
+    "create": "turbo run create",
     "deploy": "turbo run deploy",
     "format:check": "prettier --check '*/**/*.{js,ts}'",
     "format:write": "prettier --write '*/**/*.{js,ts}'",

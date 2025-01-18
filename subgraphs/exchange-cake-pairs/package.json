@@ -8,6 +8,7 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
+    "create": "graph create --node http://localhost:8120/ cysicswap/exchange-cake-pairs",
     "deploy": "graph deploy --node http://localhost:8120/ --ipfs http://localhost:5001 cysicswap/exchange-cake-pairs subgraph.yaml"
   }
 }
