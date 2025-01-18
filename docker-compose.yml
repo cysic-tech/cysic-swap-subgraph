@@ -76,3 +76,30 @@ services:
       - graph-node-pairs
       - graph-node-user-position-v3
     restart: unless-stopped
+  
+
+    # Graph CLI 服务（用于执行 graph deploy）
+  graph-cli:
+    image: graphprotocol/graph-cli:latest
+    volumes:
+      - ./subgraphs:/subgraphs  # 挂载 Subgraph 项目目录
+    working_dir: /subgraphs
+    entrypoint: >
+      /bin/sh -c "
+        sleep 10;  # 等待 Graph Node 和 IPFS 服务启动
+        graph deploy --node http://graph-node-blocks:8020/ --ipfs http://ipfs:5001 cysicswap/blocks subgraph.yaml;
+        graph deploy --node http://graph-node-exchange-cake-pairs:8120/ --ipfs http://ipfs:5001 cysicswap/exchange-cake-pairs subgraph.yaml;
+        graph deploy --node http://graph-node-exchange-v2:8220/ --ipfs http://ipfs:5001 cysicswap/exchange-v2 subgraph.yaml;
+        graph deploy --node http://graph-node-exchange-v3:8320/ --ipfs http://ipfs:5001 cysicswap/exchange-v3 subgraph.yaml;
+        graph deploy --node http://graph-node-pairs:8420/ --ipfs http://ipfs:5001 cysicswap/pairs subgraph.yaml;
+        graph deploy --node http://graph-node-user-position-v3:8520/ --ipfs http://ipfs:5001 cysicswap/user-position-v3 subgraph.yaml;
+      "
+    depends_on:
+      - graph-node-blocks
+      - graph-node-exchange-cake-pairs
+      - graph-node-exchange-v2
+      - graph-node-exchange-v3
+      - graph-node-pairs
+      - graph-node-user-position-v3
+      - ipfs
+    restart: on-failure
