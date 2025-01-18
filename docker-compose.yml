@@ -80,7 +80,7 @@ services:
 
   # Graph CLI 服务（用于执行 graph deploy）
   graph-cli:
-    image: node:18  # 使用 Node.js 镜像
+    image: node:latest  # 使用 Node.js 镜像
     volumes:
       - ./subgraphs:/subgraphs  # 挂载 Subgraph 项目目录
     working_dir: /subgraphs
