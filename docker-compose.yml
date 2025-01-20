@@ -108,14 +108,14 @@ services:
     entrypoint: >
       /bin/sh -c "
         # 安装 graph-cli
-        npm i -g yarn;
+        npm i yarn;
         yarn;
 
         # 等待 Graph Node 和 IPFS 服务启动
         sleep 10;
 
-        yarn run create
-        yarn run deploy
+        yarn run create;
+        yarn deploy;
       "
     depends_on:
       - graph-node-blocks
