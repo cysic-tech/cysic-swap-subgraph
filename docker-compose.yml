@@ -17,8 +17,8 @@ x-graph-node-base: &graph-node-base
   depends_on:
     - ipfs
   restart: unless-stopped
-  # volumes: 
-  #   - ./:/subgraph
+  volumes: 
+    - ./:/subgraph
 
 
 services:
