@@ -11,6 +11,6 @@
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
     "create": "graph create --node http://graph-node-exchange-v2:8020/ cysicswap/exchange-v2",
-    "deploy": "graph deploy --node http://graph-node-exchange-v2:8020/ --ipfs http://ipfs:5001 cysicswap/exchange-v2 subgraph.yaml"
+    "deploy": "graph deploy --node http://graph-node-exchange-v2:8020/ --ipfs http://ipfs:5001 cysicswap/exchange-v2 subgraph.yaml --version-label 0.0.1"
   }
 }

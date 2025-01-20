@@ -115,7 +115,6 @@ services:
     volumes:
       - ./:/subgraphs  # 挂载 Subgraph 项目目录
     working_dir: /subgraphs
-
     entrypoint: "tail -f /etc/hosts"
     # entrypoint: >
     #   /bin/sh -c "

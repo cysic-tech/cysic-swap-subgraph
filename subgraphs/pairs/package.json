@@ -9,6 +9,6 @@
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
     "create": "graph create --node http://graph-node-pairs:8020/ cysicswap/pairs",
-    "deploy": "graph deploy --node http://graph-node-pairs:8020/ --ipfs http://ipfs:5001 cysicswap/pairs subgraph.yaml"
+    "deploy": "graph deploy --node http://graph-node-pairs:8020/ --ipfs http://ipfs:5001 cysicswap/pairs subgraph.yaml --version-label 0.0.1"
   }
 }
