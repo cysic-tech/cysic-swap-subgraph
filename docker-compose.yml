@@ -27,13 +27,6 @@ services:
     depends_on:
       - ipfs
     restart: unless-stopped
-    command:
-      - /bin/bash
-      - -c
-      - |
-        echo "This is a multiline command"
-        echo "See how I escape $$ sign"
-        echo $$PATH
 
   # Graph Node 实例 1: blocks
   graph-node-blocks:
