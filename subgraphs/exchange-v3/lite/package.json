@@ -10,7 +10,7 @@
     "auth": "graph auth --product hosted-service SUBGRAPH_KEY",
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "create": "graph create --node http://localhost:8320/ cysicswap/exchange-v3",
-    "deploy": "graph deploy --node http://localhost:8320/ --ipfs http://localhost:5001 cysicswap/exchange-v3 subgraph.yaml"
+    "create": "graph create --node http://localhost:8020/ cysicswap/exchange-v3",
+    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://ipfs:5001 cysicswap/exchange-v3 subgraph.yaml"
   }
 }

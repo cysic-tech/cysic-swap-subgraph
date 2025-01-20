@@ -9,6 +9,6 @@
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
     "create": "graph create --node http://localhost:8020/ cysicswap/blocks",
-    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cysicswap/blocks subgraph.yaml"
+    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://ipfs:5001 cysicswap/blocks subgraph.yaml"
   }
 }

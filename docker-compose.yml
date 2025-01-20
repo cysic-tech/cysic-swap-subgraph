@@ -42,63 +42,91 @@ services:
       - "8030:8030"
       - "8040:8040"
 
-  # # Graph Node 实例 2: exchange-cake-pairs
-  # graph-node-exchange-cake-pairs:
-  #   extends:
-  #     service: graph-node-base
-  #   ports:
-  #     - "8100:8000"  # HTTP 端口
-  #     - "8101:8001"  # WebSocket 端口
-  #     - "8120:8020"  # Indexer 管理端口
+  # Graph Node 实例 2: exchange-cake-pairs
+  graph-node-exchange-cake-pairs:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8100:8000"  # HTTP 端口
+      - "8101:8001"  # WebSocket 端口
+      - "8120:8020"  # Indexer 管理端口
 
-  # # Graph Node 实例 3: exchange-v2
-  # graph-node-exchange-v2:
-  #   extends:
-  #     service: graph-node-base
-  #   ports:
-  #     - "8200:8000"  # HTTP 端口
-  #     - "8201:8001"  # WebSocket 端口
-  #     - "8220:8020"  # Indexer 管理端口
+  # Graph Node 实例 3: exchange-v2
+  graph-node-exchange-v2:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8200:8000"  # HTTP 端口
+      - "8201:8001"  # WebSocket 端口
+      - "8220:8020"  # Indexer 管理端口
 
-  # # Graph Node 实例 4: exchange-v3
-  # graph-node-exchange-v3:
-  #   extends:
-  #     service: graph-node-base
-  #   ports:
-  #     - "8300:8000"  # HTTP 端口
-  #     - "8301:8001"  # WebSocket 端口
-  #     - "8320:8020"  # Indexer 管理端口
+  # Graph Node 实例 4: exchange-v3
+  graph-node-exchange-v3:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8300:8000"  # HTTP 端口
+      - "8301:8001"  # WebSocket 端口
+      - "8320:8020"  # Indexer 管理端口
 
-  # # Graph Node 实例 5: pairs
-  # graph-node-pairs:
-  #   extends:
-  #     service: graph-node-base
-  #   ports:
-  #     - "8400:8000"  # HTTP 端口
-  #     - "8401:8001"  # WebSocket 端口
-  #     - "8420:8020"  # Indexer 管理端口
+  # Graph Node 实例 5: pairs
+  graph-node-pairs:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8400:8000"  # HTTP 端口
+      - "8401:8001"  # WebSocket 端口
+      - "8420:8020"  # Indexer 管理端口
 
-  # # Graph Node 实例 6: user-position-v3
-  # graph-node-user-position-v3:
-  #   extends:
-  #     service: graph-node-base
-  #   ports:
-  #     - "8500:8000"  # HTTP 端口
-  #     - "8501:8001"  # WebSocket 端口
-  #     - "8520:8020"  # Indexer 管理端口
+  # Graph Node 实例 6: user-position-v3
+  graph-node-user-position-v3:
+    extends:
+      service: graph-node-base
+    ports:
+      - "8500:8000"  # HTTP 端口
+      - "8501:8001"  # WebSocket 端口
+      - "8520:8020"  # Indexer 管理端口
 
-  # # Nginx 反向代理
-  # graph-node-nginx:
-  #   image: nginx:latest
-  #   ports:
-  #     - "8082:80"  # Nginx HTTP 端口
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf
-  #   depends_on:
-  #     - graph-node-blocks
-  #     - graph-node-exchange-cake-pairs
-  #     - graph-node-exchange-v2
-  #     - graph-node-exchange-v3
-  #     - graph-node-pairs
-  #     - graph-node-user-position-v3
-  #   restart: unless-stopped
+  # Nginx 反向代理
+  graph-node-nginx:
+    image: nginx:latest
+    ports:
+      - "8082:80"  # Nginx HTTP 端口
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - graph-node-blocks
+      - graph-node-exchange-cake-pairs
+      - graph-node-exchange-v2
+      - graph-node-exchange-v3
+      - graph-node-pairs
+      - graph-node-user-position-v3
+    restart: unless-stopped
+
+
+  # Graph CLI 服务（用于执行 graph deploy）
+  graph-cli:
+    image: node:latest  # 使用 Node.js 镜像
+    volumes:
+      - ./:/subgraphs  # 挂载 Subgraph 项目目录
+    working_dir: /subgraphs
+    entrypoint: >
+      /bin/sh -c "
+        # 安装 graph-cli
+        npm install -f;
+
+        # 等待 Graph Node 和 IPFS 服务启动
+        sleep 10;
+
+        npm run create
+        npm run deploy
+      "
+    depends_on:
+      - graph-node-blocks
+      - graph-node-exchange-cake-pairs
+      - graph-node-exchange-v2
+      - graph-node-exchange-v3
+      - graph-node-pairs
+      - graph-node-user-position-v3
+      - ipfs
+    restart: on-failure

@@ -9,7 +9,7 @@
     "template": "mustache ../../../config/$NETWORK.js subgraph.template.yaml > subgraph.yaml && mustache ../../../config/$NETWORK.js utils/constants.template.ts > utils/constants.ts",
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "create": "graph create --node http://localhost:8520/ cysicswap/user-position-v3",
-    "deploy": "graph deploy --node http://localhost:8520/ --ipfs http://localhost:5001 cysicswap/user-position-v3 subgraph.yaml"
+    "create": "graph create --node http://localhost:8020/ cysicswap/user-position-v3",
+    "deploy": "graph deploy --node http://localhost:8020/ --ipfs http://ipfs:5001 cysicswap/user-position-v3 subgraph.yaml"
   }
 }
