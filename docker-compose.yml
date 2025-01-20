@@ -42,7 +42,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/blocks &&
              npm install &&
              npm run create &&
@@ -60,7 +60,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-cake-pairs &&
              npm install &&
              npm run create &&
@@ -78,7 +78,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-v2 &&
              npm install &&
              npm run create &&
@@ -96,7 +96,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-v3/lite &&
              npm install &&
              npm run create &&
@@ -114,7 +114,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/pairs &&
              npm install &&
              npm run create &&
@@ -132,7 +132,7 @@ services:
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
              curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
-             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
+             apt-get install -y nodejs &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/user-position-v3/template &&
              npm install &&
              npm run create &&
