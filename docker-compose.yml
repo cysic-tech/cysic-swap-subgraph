@@ -33,7 +33,7 @@ services:
     extends:
       service: graph-node-base
     ports:
-      - "8020:8000"  # HTTP 端口（查询和 UI）
+      - "8082:8000"  # HTTP 端口（查询和 UI）
       - "8001:8001"  # WebSocket 端口（订阅）
       - "8020:8020"  # Indexer 管理端口
 
