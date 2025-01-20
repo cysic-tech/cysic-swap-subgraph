@@ -13,7 +13,6 @@ x-graph-node-base: &graph-node-base
     - ethereum=http://10.200.21.53:8655
     - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
     - RUST_LOG=info
-    - NVM_DIR=/root/.nvm  # 设置 NVM_DIR
   depends_on:
     - ipfs
   restart: unless-stopped
@@ -42,11 +41,8 @@ services:
       - "8040:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/blocks &&
              npm install &&
              npm run create &&
@@ -63,11 +59,8 @@ services:
       - "8140:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-cake-pairs &&
              npm install &&
              npm run create &&
@@ -84,11 +77,8 @@ services:
       - "8240:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-v2 &&
              npm install &&
              npm run create &&
@@ -105,11 +95,8 @@ services:
       - "8340:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/exchange-v3/lite &&
              npm install &&
              npm run create &&
@@ -126,11 +113,8 @@ services:
       - "8440:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/pairs &&
              npm install &&
              npm run create &&
@@ -147,11 +131,8 @@ services:
       - "8540:8040"
     command: >
       sh -c "apt-get update && apt-get install -y curl &&
-             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
-             export NVM_DIR=/root/.nvm &&  # 设置 NVM_DIR
-             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-             nvm install v22 &&
-             nvm use v22 &&
+             curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&
+             apt-get install -y nodejs npm &&  # 安装 nodejs 和 npm
              cd /subgraph/subgraphs/user-position-v3/template &&
              npm install &&
              npm run create &&
