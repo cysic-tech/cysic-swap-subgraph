@@ -1,5 +1,26 @@
 version: '3.8'
 
+
+# Graph Node 基础配置
+x-graph-node-base: &graph-node-base
+  image: graphprotocol/graph-node:v0.21.0
+  environment:
+    - postgres_host=10.200.21.15
+    - postgres_port=7432
+    - postgres_user=blockscout
+    - postgres_pass=ceWb1MeLBEeOIfk65gU8EjF8
+    - postgres_db=blockscout
+    - ipfs=ipfs:5001
+    - ethereum=http://10.200.21.53:8655
+    - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
+    - RUST_LOG=info
+  depends_on:
+    - ipfs
+  restart: unless-stopped
+  # volumes: 
+  #   - ./:/subgraph
+
+
 services:
   # IPFS 服务
   ipfs:
@@ -11,31 +32,15 @@ services:
       - ./ipfs_data:/data/ipfs
     restart: unless-stopped
 
-  # Graph Node 基础配置
-  graph-node-base:
-    image: graphprotocol/graph-node:latest
-    environment:
-      - postgres_host=10.200.21.15
-      - postgres_port=7432
-      - postgres_user=blockscout
-      - postgres_pass=ceWb1MeLBEeOIfk65gU8EjF8
-      - postgres_db=blockscout
-      - ipfs=ipfs:5001
-      - ethereum=http://10.200.21.53:8655
-      - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
-      - RUST_LOG=info
-    depends_on:
-      - ipfs
-    restart: unless-stopped
-
   # Graph Node 实例 1: blocks
   graph-node-blocks:
-    extends:
-      service: graph-node-base
+    <<: *graph-node-base
     ports:
       - "8082:8000"  # HTTP 端口（查询和 UI）
       - "8001:8001"  # WebSocket 端口（订阅）
       - "8020:8020"  # Indexer 管理端口
+      - "8030:8030"
+      - "8040:8040"
 
   # # Graph Node 实例 2: exchange-cake-pairs
   # graph-node-exchange-cake-pairs:
