@@ -3,7 +3,7 @@ version: '3.8'
 
 # Graph Node 基础配置
 x-graph-node-base: &graph-node-base
-  image: graphprotocol/graph-node:v0.21.0
+  image: graphprotocol/graph-node:latest
   environment:
     - postgres_host=10.200.21.15
     - postgres_port=7432
