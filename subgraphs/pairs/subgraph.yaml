@@ -3,6 +3,8 @@ description: Track Pairs and Tokens on PancakeSwap (v2) protocol
 repository: https://github.com/pancakeswap
 schema:
   file: ./schema.graphql
+features:
+  - nonFatalErrors
 dataSources:
   - kind: ethereum/contract
     name: Factory
