@@ -14,6 +14,7 @@
     "build": "turbo run build",
     "create-local": "turbo run create",
     "deploy": "turbo run deploy",
+    "deploy-local": "turbo run deploy --filter=!exchange-v3-lite --filter=!exchange-cake-pairs",
     "format:check": "prettier --check '*/**/*.{js,ts}'",
     "format:write": "prettier --write '*/**/*.{js,ts}'",
     "lint": "eslint '*/**/*.{js,ts}'",
