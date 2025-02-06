@@ -54,12 +54,12 @@ export function handleInitialize(event: Initialize): void {
   bundle.ethPriceUSD = getEthPriceInUSD()
   bundle.save()
 
-  updatePoolDayData(pool, event)
-  updatePoolHourData(pool, event)
+  updatePoolDayData(pool as Pool, event)
+  updatePoolHourData(pool as Pool, event)
 
   // update token prices
-  token0.derivedETH = findEthPerToken(bundle, token0 as Token)
-  token1.derivedETH = findEthPerToken(bundle, token1 as Token)
+  token0.derivedETH = findEthPerToken(bundle as Bundle, token0 as Token)
+  token1.derivedETH = findEthPerToken(bundle as Bundle, token1 as Token)
   token0.save()
   token1.save()
 }
@@ -96,7 +96,7 @@ export function handleMint(event: MintEvent): void {
   pool.totalValueLockedToken0 = pool.totalValueLockedToken0.plus(amount0)
   pool.totalValueLockedToken1 = pool.totalValueLockedToken1.plus(amount1)
   updateDerivedTVLAmounts(
-    bundle,
+    bundle as Bundle,
     pool as Pool,
     factory as Factory,
     token0 as Token,
@@ -168,13 +168,13 @@ export function handleMint(event: MintEvent): void {
   // TODO: Update Tick's volume, fees, and liquidity provider count. Computing these on the tick
   // level requires reimplementing some of the swapping code from v3-core.
 
-  updatePancakeDayData(factory, event)
-  updatePoolDayData(pool, event)
-  updatePoolHourData(pool, event)
-  updateTokenDayData(bundle, token0 as Token, event)
-  updateTokenDayData(bundle, token1 as Token, event)
-  updateTokenHourData(bundle, token0 as Token, event)
-  updateTokenHourData(bundle, token1 as Token, event)
+  updatePancakeDayData(factory!, event)
+  updatePoolDayData(pool!, event)
+  updatePoolHourData(pool!, event)
+  updateTokenDayData(bundle!, token0 as Token, event)
+  updateTokenDayData(bundle!, token1 as Token, event)
+  updateTokenHourData(bundle!, token0 as Token, event)
+  updateTokenHourData(bundle!, token1 as Token, event)
 
   token0.save()
   token1.save()
@@ -225,7 +225,7 @@ export function handleBurn(event: BurnEvent): void {
   pool.totalValueLockedToken0 = pool.totalValueLockedToken0.minus(amount0)
   pool.totalValueLockedToken1 = pool.totalValueLockedToken1.minus(amount1)
   updateDerivedTVLAmounts(
-    bundle,
+    bundle!,
     pool as Pool,
     factory as Factory,
     token0 as Token,
@@ -276,13 +276,13 @@ export function handleBurn(event: BurnEvent): void {
   upperTick.liquidityGross = upperTick.liquidityGross.minus(amount)
   upperTick.liquidityNet = upperTick.liquidityNet.plus(amount)
 
-  updatePancakeDayData(factory, event)
-  updatePoolDayData(pool, event)
-  updatePoolHourData(pool, event)
-  updateTokenDayData(bundle, token0 as Token, event)
-  updateTokenDayData(bundle, token1 as Token, event)
-  updateTokenHourData(bundle, token0 as Token, event)
-  updateTokenHourData(bundle, token1 as Token, event)
+  updatePancakeDayData(factory!, event)
+  updatePoolDayData(pool!, event)
+  updatePoolHourData(pool!, event)
+  updateTokenDayData(bundle!, token0 as Token, event)
+  updateTokenDayData(bundle!, token1 as Token, event)
+  updateTokenHourData(bundle!, token0 as Token, event)
+  updateTokenHourData(bundle!, token1 as Token, event)
   updateTickFeeVarsAndSave(lowerTick!, event)
   updateTickFeeVarsAndSave(upperTick!, event)
 
@@ -393,8 +393,8 @@ export function handleSwap(event: SwapEvent): void {
   // update USD pricing
   bundle.ethPriceUSD = getEthPriceInUSD()
   bundle.save()
-  token0.derivedETH = findEthPerToken(bundle, token0 as Token)
-  token1.derivedETH = findEthPerToken(bundle, token1 as Token)
+  token0.derivedETH = findEthPerToken(bundle!, token0 as Token)
+  token1.derivedETH = findEthPerToken(bundle!, token1 as Token)
 
   let transaction = loadTransaction(event)
 
@@ -417,7 +417,7 @@ export function handleSwap(event: SwapEvent): void {
   token0.totalValueLocked = token0.totalValueLocked.plus(amount0)
   token1.totalValueLocked = token1.totalValueLocked.plus(amount1)
   updateDerivedTVLAmounts(
-    bundle,
+    bundle!,
     pool as Pool,
     factory as Factory,
     token0 as Token,
@@ -452,13 +452,13 @@ export function handleSwap(event: SwapEvent): void {
   pool.feeGrowthGlobal1X128 = feeGrowthGlobal1X128 as BigInt
 
   // interval data
-  let pancakeDayData = updatePancakeDayData(factory, event)
-  let poolDayData = updatePoolDayData(pool, event)
-  let poolHourData = updatePoolHourData(pool, event)
-  let token0DayData = updateTokenDayData(bundle, token0 as Token, event)
-  let token1DayData = updateTokenDayData(bundle, token1 as Token, event)
-  let token0HourData = updateTokenHourData(bundle, token0 as Token, event)
-  let token1HourData = updateTokenHourData(bundle, token1 as Token, event)
+  let pancakeDayData = updatePancakeDayData(factory!, event)
+  let poolDayData = updatePoolDayData(pool!, event)
+  let poolHourData = updatePoolHourData(pool!, event)
+  let token0DayData = updateTokenDayData(bundle!, token0 as Token, event)
+  let token1DayData = updateTokenDayData(bundle!, token1 as Token, event)
+  let token0HourData = updateTokenHourData(bundle!, token0 as Token, event)
+  let token1HourData = updateTokenHourData(bundle!, token1 as Token, event)
 
   // update volume metrics
   pancakeDayData.volumeETH = pancakeDayData.volumeETH.plus(volumeETH)
@@ -680,7 +680,7 @@ export function handleCollectProtocol(event: CollectProtocolEvent): void {
   token0.totalValueLocked = token0.totalValueLocked.minus(amount0)
   token1.totalValueLocked = token1.totalValueLocked.minus(amount1)
   updateDerivedTVLAmounts(
-    bundle,
+    bundle!,
     pool as Pool,
     factory as Factory,
     token0 as Token,
