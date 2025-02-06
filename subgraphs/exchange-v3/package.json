@@ -14,13 +14,5 @@
     "format": "biome format . --write",
     "lint": "biome check . --organize-imports-enabled=false",
     "lint:fix": "yarn run lint  --apply"
-  },
-  "dependencies": {
-    "@graphprotocol/graph-cli": "0.74.1",
-    "@graphprotocol/graph-ts": "0.35.1",
-    "mustache": "^4.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.8.2"
   }
 }
