@@ -4,68 +4,68 @@ repository: https://github.com/pancakeswap/pancake-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
+  # - kind: ethereum/contract
+  #   name: Factory
+  #   network: cysic-dev
+  #   source:
+  #     address: "0x1f661D87f0FC6c60EDD3BC130Cea811aa26c1a88"
+  #     abi: Factory
+  #     startBlock: 726649
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.4
+  #     language: wasm/assemblyscript
+  #     file: ./mappings/factory.ts
+  #     entities:
+  #       - Pool
+  #       - Token
+  #     abis:
+  #       - name: Factory
+  #         file: ./abis/factory.json
+  #       - name: ERC20
+  #         file: ./abis/ERC20.json
+  #       - name: ERC20SymbolBytes
+  #         file: ./abis/ERC20SymbolBytes.json
+  #       - name: ERC20NameBytes
+  #         file: ./abis/ERC20NameBytes.json
+  #       - name: Pool
+  #         file: ./abis/pool.json
+  #     eventHandlers:
+  #       - event: PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
+  #         handler: handlePoolCreated
   - kind: ethereum/contract
-    name: Factory
+    name: NonfungiblePositionManager
     network: cysic-dev
     source:
-      address: "0x1f661D87f0FC6c60EDD3BC130Cea811aa26c1a88"
-      abi: Factory
-      startBlock: 726649
+      address: "0xdf5B0565769EadF40328f3d5dbD4f38a9b941A53"
+      abi: NonfungiblePositionManager
+      startBlock: 726824
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
-      file: ./mappings/factory.ts
+      file: ./mappings/position-manager.ts
       entities:
         - Pool
         - Token
       abis:
+        - name: NonfungiblePositionManager
+          file: ./abis/NonfungiblePositionManager.json
+        - name: Pool
+          file: ./abis/pool.json
         - name: Factory
           file: ./abis/factory.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: ERC20SymbolBytes
-          file: ./abis/ERC20SymbolBytes.json
-        - name: ERC20NameBytes
-          file: ./abis/ERC20NameBytes.json
-        - name: Pool
-          file: ./abis/pool.json
       eventHandlers:
-        - event: PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
-          handler: handlePoolCreated
-#   - kind: ethereum/contract
-#     name: NonfungiblePositionManager
-#     network: cysic-dev
-#     source:
-#       address: "0xdf5B0565769EadF40328f3d5dbD4f38a9b941A53"
-#       abi: NonfungiblePositionManager
-#       startBlock: 726824
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.4
-#       language: wasm/assemblyscript
-#       file: ./mappings/position-manager.ts
-#       entities:
-#         - Pool
-#         - Token
-#       abis:
-#         - name: NonfungiblePositionManager
-#           file: ./abis/NonfungiblePositionManager.json
-#         - name: Pool
-#           file: ./abis/pool.json
-#         - name: Factory
-#           file: ./abis/factory.json
-#         - name: ERC20
-#           file: ./abis/ERC20.json
-#       eventHandlers:
-#         - event: IncreaseLiquidity(indexed uint256,uint128,uint256,uint256)
-#           handler: handleIncreaseLiquidity
-#         - event: DecreaseLiquidity(indexed uint256,uint128,uint256,uint256)
-#           handler: handleDecreaseLiquidity
-#         - event: Collect(indexed uint256,address,uint256,uint256)
-#           handler: handleCollect
-#         - event: Transfer(indexed address,indexed address,indexed uint256)
-#           handler: handleTransfer
+        - event: IncreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleIncreaseLiquidity
+        - event: DecreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleDecreaseLiquidity
+        - event: Collect(indexed uint256,address,uint256,uint256)
+          handler: handleCollect
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
 # templates:
 #   - kind: ethereum/contract
 #     name: Pool
