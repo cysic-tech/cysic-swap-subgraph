@@ -6,7 +6,7 @@ import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from "./utils";
 // prettier-ignore
 let WETH_ADDRESS = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9";
 // prettier-ignore
-let WETH_USDT_PAIR = "0x0000000000000000000000000000000000000000";
+let WETH_USDT_PAIR = "0x15d780dc4ce06618b96fd6ca27afdaffc02867a0";
 // prettier-ignore
 let WETH_USDC_PAIR = "0x0000000000000000000000000000000000000000";
 

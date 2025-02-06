@@ -8,9 +8,9 @@ import { getOrLoadToken } from './entity'
 // prettier-ignore
 const WETH_ADDRESS = '0x0261d2f0199d060540c97dc13b5420d5c91a8fe9'
 // prettier-ignore
-const USDC_WETH_03_POOL = '0xc84d76cea9448793f6f7646f9c706974c200c2b5'
+const USDC_WETH_03_POOL = '0xff42396ef67f2925b209c94e5b40bdaff62c69d3'
 
-const STABLE_IS_TOKEN0 = 'true' as string
+const STABLE_IS_TOKEN0 = 'false' as string
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
