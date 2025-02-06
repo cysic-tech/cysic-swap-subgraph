@@ -12,7 +12,7 @@
   "scripts": {
     "codegen": "turbo run codegen",
     "build": "turbo run build",
-    "create-local": "turbo run create",
+    "create-local": "turbo run create --filter=!exchange-v3-lite --filter=!exchange-cake-pairs",
     "deploy": "turbo run deploy",
     "deploy-local": "turbo run deploy --filter=!exchange-v3-lite --filter=!exchange-cake-pairs",
     "format:check": "prettier --check '*/**/*.{js,ts}'",
