@@ -66,8 +66,8 @@ services:
   # Graph Node 实例 4: exchange-v3
   graph-node-exchange-v3:
     <<: *graph-node-base
-    environment:
-      - postgres_db=exchange_v3_db  # 使用不同的数据库
+    # environment:
+      # - postgres_db=exchange_v3_db  # 使用不同的数据库
     ports:
       - "8300:8000"  # HTTP 端口
       - "8301:8001"  # WebSocket 端口
