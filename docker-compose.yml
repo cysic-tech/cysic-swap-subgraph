@@ -102,7 +102,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - graph-node-blocks
-      - graph-node-exchange-cake-pairs
+      # - graph-node-exchange-cake-pairs
       - graph-node-exchange-v2
       - graph-node-exchange-v3
       - graph-node-pairs
