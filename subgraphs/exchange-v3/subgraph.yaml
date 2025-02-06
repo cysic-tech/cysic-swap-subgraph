@@ -3,8 +3,6 @@ description: PancakeSwap is a multi-chain decentralized exchange and automated m
 repository: https://github.com/pancakeswap/pancake-subgraph
 schema:
   file: ./schema.graphql
-features:
-  - nonFatalErrors
 dataSources:
   - kind: ethereum/contract
     name: Factory
