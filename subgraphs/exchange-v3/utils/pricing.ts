@@ -20,7 +20,7 @@ export let WHITELIST_TOKENS: string[] = '0x0261d2f0199d060540c97dc13b5420d5c91a8
 // prettier-ignore
 let STABLE_COINS: string[] = '0x1d94c15436eb1281b013e3c40de6d36f86b8fc2a'.split(',')
 
-let MINIMUM_ETH_LOCKED = BigDecimal.fromString('10')
+let MINIMUM_ETH_LOCKED = BigDecimal.fromString('1')
 
 let Q192 = BigInt.fromI32(2).pow(192)  // Ensure safe calculation of 2^192 using BigInt
 export function sqrtPriceX96ToTokenPrices(sqrtPriceX96: BigInt, token0: Token, token1: Token): BigDecimal[] {
