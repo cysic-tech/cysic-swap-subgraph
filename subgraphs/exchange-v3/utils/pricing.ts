@@ -5,6 +5,8 @@ import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from './index'
 import { getOrLoadToken } from './entity'
 
+
+const useWhiteList = true
 // prettier-ignore
 const WETH_ADDRESS = '0x0261d2f0199d060540c97dc13b5420d5c91a8fe9'
 // prettier-ignore
@@ -15,7 +17,7 @@ const STABLE_IS_TOKEN0 = 'false' as string
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 // prettier-ignore
-export let WHITELIST_TOKENS: string[] = '0x0261d2f0199d060540c97dc13b5420d5c91a8fe9'.split(',')
+export let WHITELIST_TOKENS: string[] = '0x0261d2f0199d060540c97dc13b5420d5c91a8fe9,0x1d94c15436eb1281b013e3c40de6d36f86b8fc2a'.split(',')
 
 // prettier-ignore
 let STABLE_COINS: string[] = '0x1d94c15436eb1281b013e3c40de6d36f86b8fc2a'.split(',')
