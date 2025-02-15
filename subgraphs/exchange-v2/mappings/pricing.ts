@@ -35,7 +35,7 @@ export function getETHPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 // prettier-ignore
-let WHITELIST: string[] = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9".split(",");
+let WHITELIST: string[] = "0x0261d2f0199d060540c97dc13b5420d5c91a8fe9,0x1d94c15436eb1281b013e3c40de6d36f86b8fc2a".split(",");
 
 // minimum liquidity for price to get tracked
 let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString("0");
