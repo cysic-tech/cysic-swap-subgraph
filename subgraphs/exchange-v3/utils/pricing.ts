@@ -1,10 +1,9 @@
 /* eslint-disable prefer-const */
 import { ONE_BD, ZERO_BD, ZERO_BI } from './constants'
 import { Bundle, Pool, Token } from '../generated/schema'
-import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
+import { BigDecimal, BigInt, log } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from './index'
 import { getOrLoadToken } from './entity'
-
 
 const useWhiteList = true
 // prettier-ignore
@@ -22,7 +21,7 @@ export let WHITELIST_TOKENS: string[] = '0x0261d2f0199d060540c97dc13b5420d5c91a8
 // prettier-ignore
 let STABLE_COINS: string[] = '0x1d94c15436eb1281b013e3c40de6d36f86b8fc2a'.split(',')
 
-let MINIMUM_ETH_LOCKED = BigDecimal.fromString('1')
+let MINIMUM_ETH_LOCKED = ZERO_BD || BigDecimal.fromString('1')
 
 let Q192 = BigInt.fromI32(2).pow(192)  // Ensure safe calculation of 2^192 using BigInt
 export function sqrtPriceX96ToTokenPrices(sqrtPriceX96: BigInt, token0: Token, token1: Token): BigDecimal[] {
@@ -189,12 +188,29 @@ export function getAdjustedAmounts(
   tokenAmount1: BigDecimal,
   token1: Token,
 ): AmountType {
+  log.debug(
+    'Processing amounts - token0: {} ({}) amount: {}, token1: {} ({}) amount: {}',
+    [
+      token0.id,
+      token0.symbol,
+      tokenAmount0.toString(),
+      token1.id,
+      token1.symbol,
+      tokenAmount1.toString()
+    ]
+  )
   let derivedETH0 = token0.derivedETH
   let derivedETH1 = token1.derivedETH
 
   let eth = ZERO_BD
   let ethUntracked = tokenAmount0.times(derivedETH0).plus(tokenAmount1.times(derivedETH1))
 
+  let token0Whitelisted = WHITELIST_TOKENS.includes(token0.id)
+  let token1Whitelisted = WHITELIST_TOKENS.includes(token1.id)
+  log.debug(
+    'Token whitelist status - token0: {}, token1: {}',
+    [token0Whitelisted.toString(), token1Whitelisted.toString()]
+  )
   // both are whitelist tokens, return sum of both amounts
   if (WHITELIST_TOKENS.includes(token0.id) && WHITELIST_TOKENS.includes(token1.id)) {
     eth = ethUntracked
@@ -213,6 +229,11 @@ export function getAdjustedAmounts(
   // Define USD values based on ETH derived values.
   let usd = eth.times(bundle.ethPriceUSD)
   let usdUntracked = ethUntracked.times(bundle.ethPriceUSD)
+
+  log.debug(
+    'Calculated amounts - ETH: {}, USD: {}, ETH Untracked: {}, USD Untracked: {}',
+    [eth.toString(), usd.toString(), ethUntracked.toString(), usdUntracked.toString()]
+  )
 
   return { eth, usd, ethUntracked, usdUntracked }
 }
