@@ -304,6 +304,7 @@ export function handleBurn(event: BurnEvent): void {
 }
 
 export function handleSwap(event: SwapEvent): void {
+  log.info('handleSwap triggered', [])
   let bundle = Bundle.load('1')
   if (bundle === null) {
     return
