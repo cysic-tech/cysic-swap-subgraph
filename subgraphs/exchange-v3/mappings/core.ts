@@ -153,8 +153,8 @@ export function handleMint(event: MintEvent): void {
   let lowerTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickLower).toString()}`
   let upperTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickUpper).toString()}`
 
-  log.info('Lower Tick ID: {}, tickerLower: {}, poolAddess: {}', [lowerTickId.toString(),  BigInt.fromI32(event.params.tickLower).toString(), poolAddress.toString()]);
-  log.info('Upper Tick ID: {}, tickUpper: {}, poolAddess: {}', [upperTickId.toString(),  BigInt.fromI32(event.params.tickUpper).toString(), poolAddress.toString()]);
+  log.info('Lower Tick ID: {}, poolAddess: {}', [lowerTickId.toString(), poolAddress.toString()]);
+  log.info('Upper Tick ID: {}, poolAddess: {}', [upperTickId.toString(), poolAddress.toString()]);
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
