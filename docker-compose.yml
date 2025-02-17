@@ -20,7 +20,7 @@ x-graph-node-base: &graph-node-base
     - ipfs
   restart: unless-stopped
   volumes: 
-    - ./:/subgraph
+    - ./subgraph-data:/subgraph
 
 
 services:
