@@ -129,7 +129,12 @@ export function handleMint(event: MintEvent): void {
   pool.liquidityProviderCount = pool.liquidityProviderCount.plus(ONE_BI)
 
   let transaction = loadTransaction(event)
-  let mint = new Mint(`${transaction.id.toString()}#${pool.txCount.toString()}`)
+  // let mint = new Mint(`${transaction.id.toString()}#${pool.txCount.toString()}`)
+  let txId = transaction.id.toString()
+  let txCount = pool.txCount.toString()
+  let id = txId + '#' + txCount
+  let mint = new Mint(id)
+
   mint.transaction = transaction.id
   mint.timestamp = transaction.timestamp
   mint.pool = pool.id
@@ -150,12 +155,8 @@ export function handleMint(event: MintEvent): void {
   let lowerTickIdx = event.params.tickLower // -887270
   let upperTickIdx = event.params.tickUpper // 887270
 
-  log.info('poolAddress: {}', [poolAddress]);
-  log.info('idx: {}', [BigInt.fromI32(event.params.tickLower).toString()]);
-  let lowerTickIdxString = BigInt.fromI32(event.params.tickLower).toString()
-  let upperTickIdxString = BigInt.fromI32(event.params.tickUpper).toString()  
   let lowerTickId = poolAddress + BigInt.fromI32(event.params.tickLower).toString()
-  let upperTickId = `${poolAddress}${upperTickIdxString}`
+  let upperTickId = poolAddress + BigInt.fromI32(event.params.tickUpper).toString()
 
   log.info('Lower Tick ID: {}', [lowerTickId.toString()]);
   log.info('Upper Tick ID: {}', [upperTickId.toString()]);
