@@ -148,20 +148,20 @@ export function handleMint(event: MintEvent): void {
   let lowerTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickLower).toString()}`
   let upperTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickUpper).toString()}`
 
-  log.info('Lower Tick ID: {}', [lowerTickId]);
-  log.info('Upper Tick ID: {}', [upperTickId]);
+  log.info('Lower Tick ID: {}', [lowerTickId.toString()]);
+  log.info('Upper Tick ID: {}', [upperTickId.toString()]);
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
 
   if (lowerTick === null) {
     lowerTick = createTick(lowerTickId, lowerTickIdx, pool.id, event)
-    log.info('lowTick created: {}', [lowerTick.tickIdx]);
+    log.info('lowTick created: {}', [lowerTick.tickIdx.toString()]);
   }
 
   if (upperTick === null) {
     upperTick = createTick(upperTickId, upperTickIdx, pool.id, event)
-    log.info('upperTick created: {}', [upperTick.tickIdx]);
+    log.info('upperTick created: {}', [upperTick.tickIdx.toString()]);
   }
 
   let amount = event.params.amount
@@ -572,7 +572,7 @@ function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
   tick.feeGrowthOutside0X128 = tickResult.value2
   tick.feeGrowthOutside1X128 = tickResult.value3
   tick.save()
-  log.info('tick save: {}', [tick.tickIdx]);
+  log.info('tick save: {}', [tick.tickIdx.toString()]);
   updateTickDayData(tick!, event)
 }
 
