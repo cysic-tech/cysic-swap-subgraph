@@ -154,12 +154,13 @@ export function handleMint(event: MintEvent): void {
   // tick entities
   let lowerTickIdx = event.params.tickLower // -887270
   let upperTickIdx = event.params.tickUpper // 887270
+ 
 
-  let lowerTickId = poolAddress + BigInt.fromI32(event.params.tickLower).toString()
-  let upperTickId = poolAddress + BigInt.fromI32(event.params.tickUpper).toString()
+  let lowerTickIdxString = BigInt.fromI32(event.params.tickLower).toString()
+  let lowerTickId = poolAddress + '#' + lowerTickIdxString
 
-  log.info('Lower Tick ID: {}', [lowerTickId.toString()]);
-  log.info('Upper Tick ID: {}', [upperTickId.toString()]);
+  let upperTickIdxString = BigInt.fromI32(event.params.tickUpper).toString()
+  let upperTickId = poolAddress + '#' + upperTickIdxString
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
@@ -261,7 +262,11 @@ export function handleBurn(event: BurnEvent): void {
 
   // burn entity
   let transaction = loadTransaction(event)
-  let burn = new Burn(`${transaction.id}#${pool.txCount.toString()}`)
+  // let burn = new Burn(`${transaction.id}#${pool.txCount.toString()}`)
+  let txId = transaction.id.toString()
+  let txCount = pool.txCount.toString()
+  let id = txId + '#' + txCount
+  let burn = new Burn(id)
   burn.transaction = transaction.id
   burn.timestamp = transaction.timestamp
   burn.pool = pool.id
@@ -443,7 +448,11 @@ export function handleSwap(event: SwapEvent): void {
   )
 
   // create Swap event
-  let swap = new Swap(`${transaction.id}#${pool.txCount.toString()}`)
+  // let swap = new Swap(`${transaction.id}#${pool.txCount.toString()}`)
+  let txId = transaction.id.toString()
+  let txCount = pool.txCount.toString()
+  let id = txId + '#' + txCount
+  let swap = new Swap(id)
   swap.transaction = transaction.id
   swap.timestamp = transaction.timestamp
   swap.pool = pool.id
@@ -650,7 +659,10 @@ export function handleCollect(event: CollectEvent): void {
   token1.txCount = token1.txCount.plus(ONE_BI)
   pool.txCount = pool.txCount.plus(ONE_BI)
 
-  let collectID = `${transaction.id.toString()}#${pool.txCount.toString()}`
+  // let collectID = `${transaction.id.toString()}#${pool.txCount.toString()}`;
+  let txId = transaction.id.toString()
+  let txCount = pool.txCount.toString()
+  let collectID = txId + '#' + txCount
   let collect = new Collect(collectID)
   collect.transaction = transaction.id
   collect.timestamp = event.block.timestamp
