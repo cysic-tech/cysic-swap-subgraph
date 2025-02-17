@@ -65,21 +65,21 @@ export function handleInitialize(event: Initialize): void {
 }
 
 export function handleMint(event: MintEvent): void {
-  log.info('handleMint triggered', [])
+  // log.info('handleMint triggered', [])
   let bundle = Bundle.load('1')
 
-  log.info('handleMint bundle: {}', [bundle ? bundle.id : 'null'])
+  // log.info('handleMint bundle: {}', [bundle ? bundle.id : 'null'])
   if (bundle === null) {
     return
   }
   let poolAddress = event.address.toHexString()
   let pool = Pool.load(poolAddress)
-  log.info('handleMint pool: {}, address: {}', [pool ? pool.id : 'null', poolAddress])
+  // log.info('handleMint pool: {}, address: {}', [pool ? pool.id : 'null', poolAddress])
   if (pool === null) {
     return
   }
   let factory = Factory.load(FACTORY_ADDRESS)
-  log.info('handleMint factory: {}', [factory ? factory.id : 'null'])
+  // log.info('handleMint factory: {}', [factory ? factory.id : 'null'])
   if (factory === null) {
     return
   }
@@ -147,26 +147,26 @@ export function handleMint(event: MintEvent): void {
   mint.logIndex = event.logIndex
 
   // tick entities
-  let lowerTickIdx = event.params.tickLower
-  let upperTickIdx = event.params.tickUpper
+  let lowerTickIdx = event.params.tickLower // -887270
+  let upperTickIdx = event.params.tickUpper // 887270
 
   let lowerTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickLower).toString()}`
   let upperTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickUpper).toString()}`
 
-  log.info('Lower Tick ID: {}', [lowerTickId.toString()]);
-  log.info('Upper Tick ID: {}', [upperTickId.toString()]);
+  // log.info('Lower Tick ID: {}', [lowerTickId.toString()]);
+  // log.info('Upper Tick ID: {}', [upperTickId.toString()]);
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
 
   if (lowerTick === null) {
     lowerTick = createTick(lowerTickId, lowerTickIdx, pool.id, event)
-    log.info('lowTick created: {}', [lowerTick.tickIdx.toString()]);
+    // log.info('lowTick created: {}', [lowerTick.tickIdx.toString()]);
   }
 
   if (upperTick === null) {
     upperTick = createTick(upperTickId, upperTickIdx, pool.id, event)
-    log.info('upperTick created: {}', [upperTick.tickIdx.toString()]);
+    // log.info('upperTick created: {}', [upperTick.tickIdx.toString()]);
   }
 
   let amount = event.params.amount
@@ -304,7 +304,7 @@ export function handleBurn(event: BurnEvent): void {
 }
 
 export function handleSwap(event: SwapEvent): void {
-  log.info('handleSwap triggered', [])
+  // log.info('handleSwap triggered', [])
   let bundle = Bundle.load('1')
   if (bundle === null) {
     return
@@ -342,7 +342,7 @@ export function handleSwap(event: SwapEvent): void {
   let volumeUSDUntracked = volumeAmounts.usdUntracked.div(TWO_BD)
 
   let protocolFeeAmounts: AmountType = getAdjustedAmounts(
-      bundle!,
+    bundle!,
     protocolFeeAmount0,
     token0 as Token,
     protocolFeeAmount1,
@@ -577,8 +577,11 @@ function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
   let tickResult = poolContract.ticks(tick.tickIdx.toI32())
   tick.feeGrowthOutside0X128 = tickResult.value2
   tick.feeGrowthOutside1X128 = tickResult.value3
+
+  log.info('tick ready to save, poolAddress = {}, tickIdx = {}, liquidityGross = {}, liquidityNet = {} ', [tick.liquidityGross.toString(), tick.liquidityNe.toString(), tick.tickIdx.toString(), tick.poolAddress.toString()])
   tick.save()
-  log.info('tick save: {}', [tick.tickIdx.toString()]);
+  // log.info('tick save: {}', [tick.tickIdx.toString()]);
+
   updateTickDayData(tick!, event)
 }
 
@@ -613,7 +616,7 @@ export function handleCollect(event: CollectEvent): void {
   let amount0 = convertTokenToDecimal(event.params.amount0, token0)
   let amount1 = convertTokenToDecimal(event.params.amount1, token1)
   let amounts: AmountType = getAdjustedAmounts(
-      bundle!,
+    bundle!,
     // Used for USD in Collect event.
     amount0,
     token0 as Token,
