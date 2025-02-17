@@ -15,7 +15,7 @@ x-graph-node-base: &graph-node-base
     - ethereum=cysic-dev:http://10.200.21.53:8655  # 自定义 RPC 节点
     - RUST_LOG=info
     - GRAPH_ALLOW_NON_DETERMINISTIC_FULLTEXT_SEARCH=true
-    - GRAPH_LOG=debug
+    - GRAPH_LOG=info
   depends_on:
     - ipfs
   restart: unless-stopped
