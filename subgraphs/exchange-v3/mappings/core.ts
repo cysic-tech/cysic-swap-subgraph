@@ -578,7 +578,7 @@ function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
   tick.feeGrowthOutside0X128 = tickResult.value2
   tick.feeGrowthOutside1X128 = tickResult.value3
 
-  log.info('tick ready to save, poolAddress = {}, tickIdx = {}, liquidityGross = {}, liquidityNet = {} ', [tick.liquidityGross.toString(), tick.liquidityNe.toString(), tick.tickIdx.toString(), tick.poolAddress.toString()])
+  log.info('tick ready to save, poolAddress = {}, tickIdx = {}, liquidityGross = {}, liquidityNet = {} ', [tick.liquidityGross.toString(), tick.tickIdx.toString(), tick.poolAddress.toString()])
   tick.save()
   // log.info('tick save: {}', [tick.tickIdx.toString()]);
 
