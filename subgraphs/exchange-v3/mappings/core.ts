@@ -283,8 +283,10 @@ export function handleBurn(event: BurnEvent): void {
   burn.logIndex = event.logIndex
 
   // tick entities
-  let lowerTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickLower).toString()}`
-  let upperTickId = `${poolAddress}#${BigInt.fromI32(event.params.tickUpper).toString()}`
+  let tickLowerString = BigInt.fromI32(event.params.tickLower).toString()
+  let lowerTickId = poolAddress + '#' + tickLowerString
+  let tickUpperString = BigInt.fromI32(event.params.tickUpper).toString()
+  let upperTickId = poolAddress + '#' + tickUpperString
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
   if (lowerTick === null || upperTick === null) {
