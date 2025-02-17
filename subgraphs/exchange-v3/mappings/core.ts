@@ -65,7 +65,7 @@ export function handleInitialize(event: Initialize): void {
 }
 
 export function handleMint(event: MintEvent): void {
-  log.info('handleMint before bundle')
+  log.info('handleMint before bundle', [])
 
   let bundle = Bundle.load('1')
 
