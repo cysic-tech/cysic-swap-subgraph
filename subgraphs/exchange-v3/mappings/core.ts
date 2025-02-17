@@ -66,15 +66,19 @@ export function handleInitialize(event: Initialize): void {
 
 export function handleMint(event: MintEvent): void {
   let bundle = Bundle.load('1')
+
+  log.info('handleMint bundle: {}', [bundle ? bundle.id : 'null'])
   if (bundle === null) {
     return
   }
   let poolAddress = event.address.toHexString()
   let pool = Pool.load(poolAddress)
+  log.info('handleMint pool: {}, address: {}', [pool ? pool.id : 'null', poolAddress])
   if (pool === null) {
     return
   }
   let factory = Factory.load(FACTORY_ADDRESS)
+  log.info('handleMint factory: {}', [factory ? factory.id : 'null'])
   if (factory === null) {
     return
   }
